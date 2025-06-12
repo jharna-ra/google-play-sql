@@ -1,0 +1,85 @@
+For the dataset run the query in SQL 
+
+create database playstore;
+use playstore;
+CREATE TABLE apps (
+  app_id INT PRIMARY KEY,
+  app_name VARCHAR(100),
+  category VARCHAR(50),
+  release_date DATE,
+  price DECIMAL(5,2),
+  rating DECIMAL(3,2)
+);
+INSERT INTO apps VALUES
+(1, 'Google Maps', 'Navigation', '2012-03-01', 0.00, 4.5),
+(2, 'Candy Crush', 'Games', '2013-05-20', 0.00, 4.3),
+(3, 'Photo Editor Pro', 'Photography', '2018-07-15', 0.00, 4.0),
+(4, 'Fitness Tracker+', 'Health', '2020-01-10', 2.99, 3.9),
+(5, 'Language Learner', 'Education', '2021-09-12', 4.99, 4.6);
+
+CREATE TABLE downloads (
+  download_id INT PRIMARY KEY,
+  app_id INT,
+  download_date DATE,
+  downloads INT
+);
+
+INSERT INTO downloads VALUES
+(1, 1, '2024-01-01', 200000),
+(2, 2, '2024-01-01', 500000),
+(3, 3, '2024-01-01', 300000),
+(4, 4, '2024-01-01', 70000),
+(5, 5, '2024-01-01', 100000);
+
+
+CREATE TABLE reviews (
+  review_id INT PRIMARY KEY,
+  app_id INT,
+  user_id INT,
+  review_text TEXT,
+  rating INT,
+  review_date DATE
+);
+
+INSERT INTO reviews VALUES
+(101, 1, 1001, 'Love this app!', 5, '2024-01-01'),
+(102, 2, 1002, 'Too many ads', 3, '2024-01-01'),
+(103, 3, 1003, 'Amazing features', 4, '2024-01-01'),
+(104, 4, 1004, 'Buggy and slow', 2, '2024-01-01'),
+(105, 5, 1005, 'Helpful for learning', 5, '2024-01-01');
+
+CREATE TABLE users (
+  user_id INT PRIMARY KEY,
+  country VARCHAR(50),
+  age INT
+);
+
+INSERT INTO users VALUES
+(1001, 'India', 25),
+(1002, 'USA', 30),
+(1003, 'Canada', 21),
+(1004, 'India', 27),
+(1005, 'UK', 23);
+
+CREATE TABLE categories (
+  category VARCHAR(50) PRIMARY KEY,
+  description TEXT
+);
+
+INSERT INTO categories VALUES
+('Navigation', 'Apps for directions and maps'),
+('Games', 'Entertainment and mobile gaming'),
+('Photography', 'Photo editing and camera apps'),
+('Health', 'Fitness, wellness, and medical apps'),
+('Education', 'Learning tools and study apps');
+
+CREATE TABLE pricing_model (
+    app_id INT PRIMARY KEY,
+    pricing_type VARCHAR(10) -- 'Free' or 'Paid'
+);
+INSERT INTO pricing_model (app_id, pricing_type) VALUES
+(1, 'Free'),
+(2, 'Free'),
+(3, 'Free'),
+(4, 'Paid'),
+(5, 'Paid');
